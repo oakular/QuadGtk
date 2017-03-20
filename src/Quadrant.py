@@ -29,22 +29,23 @@ class Quadrant(Gtk.TextView):
     # --- method to set the path for the file containing text for this quadrant
     def setFilePath(self, filePath, quadNum):
         self.quadPath = filePath + ("quad" + str(quadNum))
-        print(self.quadPath)
     # end setFilePath()
 
     # --- method to read the contents of the file for this quadrant
     def readFromFile(self):
         # open the file for the quadrant that called the method
-        with open(self.quadPath) as quadFile:
+        with open(self.quadPath, 'r') as quadFile:
             quadContent = quadFile.read()
             # add contents of file to the TextView via the textbuffer
             self.textbuffer = self.get_buffer()
             self.textbuffer.set_text(quadContent)
-        return
     # end readFromFile()
 
     # --- method to write the contents of the file for this quadrant from the
     # text buffer
     def writeToFile():
-        return
+        # open the file for the quadrant that called the method
+        with open(self.quadPath, 'w') as quadFile:
+            quadContent = self.get_buffer()
+            quadFile.write(quadContent)
     # end writeToFile()
