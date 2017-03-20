@@ -6,7 +6,7 @@ from gi.repository import Gtk
 
 class Quadrant(Gtk.TextView):
 
-    FILE_PATH = ""
+    quadPath = ''
 
     # --- CONSTRUCTOR
     def __init__(self):
@@ -23,21 +23,23 @@ class Quadrant(Gtk.TextView):
 
     # --- method to get the path for the file containing text for this quadrant
     def getFilePath():
-        return FILE_PATH
+        return quadPath
     # end getFilePath()
 
     # --- method to set the path for the file containing text for this quadrant
     def setFilePath(self, filePath, quadNum):
-        FILE_PATH = filePath + ("quad" + quadNum)
+        self.quadPath = filePath + ("quad" + str(quadNum))
+        print(self.quadPath)
     # end setFilePath()
 
     # --- method to read the contents of the file for this quadrant
-    def readFromFile():
+    def readFromFile(self):
         # open the file for the quadrant that called the method
-        with open(FILE_PATH) as quadFile:
+        with open(self.quadPath) as quadFile:
             quadContent = quadFile.read()
-            # add contents of file to the TextView
-            self.set_text(quadContent)
+            # add contents of file to the TextView via the textbuffer
+            self.textbuffer = self.get_buffer()
+            self.textbuffer.set_text(quadContent)
         return
     # end readFromFile()
 
