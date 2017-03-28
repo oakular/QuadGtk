@@ -12,12 +12,13 @@ class Quadrant(Gtk.TextView):
     def __init__(self):
         Gtk.TextView.__init__(self)
         self.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.set_default_size(-1, 150)
     # end CONSTRUCTOR
 
     # --- CONSTRUCTOR (sets file path within constructor)
     def __init__(self, filePath, quadNum):
         Gtk.TextView.__init__(self)
-        self.set_wrap_mode(Gtk.WrapMode.WORD)
+        # self.set_wrap_mode(Gtk.WrapMode.WORD)
         self.setFilePath(filePath, quadNum)
     # end CONSTRUCTOR
 

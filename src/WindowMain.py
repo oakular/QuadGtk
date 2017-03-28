@@ -9,10 +9,13 @@ from os.path import expanduser
 
 class QuadWindow(Gtk.Window):
 
+    home = expanduser("~")
+    quadPath = home + "/.quad/"
+
     def __init__(self):
         Gtk.Window.__init__(self)
-        quadGrid = Gtk.Grid()
-        self.add(quadGrid)
+        self.quadGrid = Gtk.Grid()
+        self.add(self.quadGrid)
 
         self.createGUI()
 
@@ -25,19 +28,19 @@ class QuadWindow(Gtk.Window):
     # --- method to specifically create an instance of Quadrant on the Window
     def createQuad(self):
         # create quadrants
-        quad0 = Quadrant(quadPath, 0)
+        quad0 = Quadrant(self.quadPath, 0)
         quad0.readFromFile()
-        grid.add(quad0)
+        self.quadGrid.add(quad0)
 
-        quad1 = Quadrant(quadPath, 1)
+        quad1 = Quadrant(self.quadPath, 1)
         quad1.readFromFile()
-        grid.attach_next_to(quad1, quad0, Gtk.PositionType.RIGHT, 1, 1)
+        self.quadGrid.attach_next_to(quad1, quad0, Gtk.PositionType.RIGHT, 1, 1)
 
-        quad2 = Quadrant(quadPath, 2)
+        quad2 = Quadrant(self.quadPath, 2)
         quad2.readFromFile()
-        grid.attach_next_to(quad2, quad0, Gtk.PositionType.BOTTOM, 1, 1)
+        self.quadGrid.attach_next_to(quad2, quad0, Gtk.PositionType.BOTTOM, 1, 1)
 
-        quad3 = Quadrant(quadPath, 3)
+        quad3 = Quadrant(self.quadPath, 3)
         quad3.readFromFile()
-        grid.attach_next_to(quad3, quad1, Gtk.PositionType.BOTTOM, 1, 1)
+        self.quadGrid.attach_next_to(quad3, quad1, Gtk.PositionType.BOTTOM, 1, 1)
     # end createQuad()
