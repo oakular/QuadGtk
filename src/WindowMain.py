@@ -11,7 +11,7 @@ class QuadWindow(Gtk.Window):
 
     home = expanduser("~")
     quadPath = home + "/.quad/"
-    quad[4] = None
+    quad = []
 
     def __init__(self):
         Gtk.Window.__init__(self)
@@ -22,34 +22,29 @@ class QuadWindow(Gtk.Window):
 
     # --- method for making other method calls to setup the whole GUI
     def createGUI(self):
-        self.createQuad()
+        global quad
+
+        for quadID in range(0, 4):
+            self.createQuad(self.quad, quadID)
         return
     # end createGUI()
 
     # --- method to specifically create an instance of Quadrant on the Window
-    def createQuad(self):
+    def createQuad(self, quad, quadID):
+
         # create quadrants
-        quad0 = Quadrant(self.quadPath, 0)
-        quad0.set_left_margin(10)
-        quad0.set_right_margin(10)
-        quad0.readFromFile()
-        self.quadGrid.add(quad0)
+        newQuad = Quadrant(self.quadPath, quadID)
+        quad.append(newQuad)
+        quad[quadID].set_left_margin(10)
+        quad[quadID].set_right_margin(10)
+        quad[quadID].readFromFile()
 
-        quad1 = Quadrant(self.quadPath, 1)
-        quad1.set_left_margin(10)
-        quad1.set_right_margin(10)
-        quad1.readFromFile()
-        self.quadGrid.attach_next_to(quad1, quad0, Gtk.PositionType.RIGHT, 1, 1)
-
-        quad2 = Quadrant(self.quadPath, 2)
-        quad2.set_left_margin(10)
-        quad2.set_right_margin(10)
-        quad2.readFromFile()
-        self.quadGrid.attach_next_to(quad2, quad0, Gtk.PositionType.BOTTOM, 1, 1)
-
-        quad3 = Quadrant(self.quadPath, 3)
-        quad3.set_left_margin(10)
-        quad3.set_right_margin(10)
-        quad3.readFromFile()
-        self.quadGrid.attach_next_to(quad3, quad1, Gtk.PositionType.BOTTOM, 1, 1)
+        if(quadID == 0):
+            self.quadGrid.add(quad[quadID])
+        elif(quadID == 1):
+            self.quadGrid.attach_next_to(quad[quadID], quad[0], Gtk.PositionType.RIGHT, 1, 1)
+        elif(quadID == 2):
+            self.quadGrid.attach_next_to(quad[quadID], quad[0], Gtk.PositionType.BOTTOM, 1, 1)
+        elif(quadID == 3):
+            self.quadGrid.attach_next_to(quad[quadID], quad[1], Gtk.PositionType.BOTTOM, 1, 1)
     # end createQuad()
