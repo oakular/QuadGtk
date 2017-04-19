@@ -6,23 +6,24 @@ from gi.repository import Gtk
 
 class Quadrant(Gtk.TextView):
 
+    # ----- FIELDS -----
     quadPath = ''
 
-    # --- CONSTRUCTOR
+    # ----- CONSTRUCTOR -----
     def __init__(self):
         Gtk.TextView.__init__(self)
         self.set_wrap_mode(Gtk.WrapMode.WORD)
         self.set_default_size(200, 200)
-    # end CONSTRUCTOR
+    # ----- END CONSTRUCTOR -----
 
-    # --- CONSTRUCTOR (sets file path within constructor)
+    # ----- CONSTRUCTOR (sets file path within constructor)
     def __init__(self, filePath, quadNum):
         # TODO: wrap textview in a ScrolledWindow
         Gtk.TextView.__init__(self)
         self.set_wrap_mode(Gtk.WrapMode.WORD)
         self.set_size_request(150, 150)
         self.setFilePath(filePath, quadNum)
-    # end CONSTRUCTOR
+    # ----- END CONSTRUCTOR -----
 
     # --- method to get the path for the file containing text for this quadrant
     def getFilePath():

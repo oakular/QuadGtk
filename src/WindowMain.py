@@ -9,16 +9,19 @@ from os.path import expanduser
 
 class QuadWindow(Gtk.Window):
 
+    # ----- FIELDS -----
     home = expanduser("~")
     quadPath = home + "/.quad/"
     quad = []
 
+    # ----- CONSTRUCTOR -----
     def __init__(self):
         Gtk.Window.__init__(self)
         self.quadGrid = Gtk.Grid()
         self.add(self.quadGrid)
 
         self.createGUI()
+    # ----- END CONSTRUCTOR -----
 
     # --- method for making other method calls to setup the whole GUI
     def createGUI(self):
@@ -39,6 +42,7 @@ class QuadWindow(Gtk.Window):
         quad[quadID].set_right_margin(10)
         quad[quadID].readFromFile()
 
+        # set quad position in grid based on ID
         if(quadID == 0):
             self.quadGrid.add(quad[quadID])
         elif(quadID == 1):
