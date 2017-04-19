@@ -20,7 +20,7 @@ class Quadrant(Gtk.TextView):
         # TODO: wrap textview in a ScrolledWindow
         Gtk.TextView.__init__(self)
         self.set_wrap_mode(Gtk.WrapMode.WORD)
-        self.set_size_request(100, 100)
+        self.set_size_request(150, 150)
         self.setFilePath(filePath, quadNum)
     # end CONSTRUCTOR
 

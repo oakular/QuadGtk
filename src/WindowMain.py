@@ -11,6 +11,7 @@ class QuadWindow(Gtk.Window):
 
     home = expanduser("~")
     quadPath = home + "/.quad/"
+    quad[4] = None
 
     def __init__(self):
         Gtk.Window.__init__(self)
@@ -29,18 +30,26 @@ class QuadWindow(Gtk.Window):
     def createQuad(self):
         # create quadrants
         quad0 = Quadrant(self.quadPath, 0)
+        quad0.set_left_margin(10)
+        quad0.set_right_margin(10)
         quad0.readFromFile()
         self.quadGrid.add(quad0)
 
         quad1 = Quadrant(self.quadPath, 1)
+        quad1.set_left_margin(10)
+        quad1.set_right_margin(10)
         quad1.readFromFile()
         self.quadGrid.attach_next_to(quad1, quad0, Gtk.PositionType.RIGHT, 1, 1)
 
         quad2 = Quadrant(self.quadPath, 2)
+        quad2.set_left_margin(10)
+        quad2.set_right_margin(10)
         quad2.readFromFile()
         self.quadGrid.attach_next_to(quad2, quad0, Gtk.PositionType.BOTTOM, 1, 1)
 
         quad3 = Quadrant(self.quadPath, 3)
+        quad3.set_left_margin(10)
+        quad3.set_right_margin(10)
         quad3.readFromFile()
         self.quadGrid.attach_next_to(quad3, quad1, Gtk.PositionType.BOTTOM, 1, 1)
     # end createQuad()
