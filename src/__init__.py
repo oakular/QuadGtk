@@ -9,5 +9,6 @@ from WindowMain import QuadWindow
 win = QuadWindow()
 win.connect("delete-event", Gtk.main_quit)
 win.connect("key-press-event", QuadWindow.keyHandling)
+win.
 win.show_all()
 Gtk.main()
