@@ -64,6 +64,7 @@ class QuadWindow(Gtk.Window):
 
         scrollWin = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         scrollWin.set_size_request(150, 150)
+        scrollWin.set_shadow_type(Gtk.ShadowType.OUT)
         self.quadScroll.append(scrollWin)
 
         self.quadScroll[quadID].add(quad[quadID])
