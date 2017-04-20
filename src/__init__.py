@@ -7,7 +7,7 @@ from WindowMain import QuadWindow
 
 # setup
 win = QuadWindow()
-win.connect("delete-event", Gtk.main_quit)
+win.connect("delete-event", QuadWindow.main_quit)
 win.connect("key-press-event", QuadWindow.keyHandling)
 win.set_size_request(325,325)
 win.set_gravity(Gdk.Gravity.CENTER)
