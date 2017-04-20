@@ -42,6 +42,8 @@ class QuadWindow(Gtk.Window):
         newQuad = Quadrant(self.quadPath, quadID)
         quad.append(newQuad)
         quad[quadID].set_left_margin(10)
+        quad[quadID].set_top_margin(10)
+        quad[quadID].set_bottom_margin(10)
         quad[quadID].set_right_margin(10)
         quad[quadID].readFromFile()
 
