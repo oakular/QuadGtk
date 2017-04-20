@@ -47,9 +47,10 @@ class Quadrant(Gtk.TextView):
 
     # --- method to write the contents of the file for this quadrant from the
     # text buffer
-    def writeToFile():
+    def writeToFile(self):
         # open the file for the quadrant that called the method
         with open(self.quadPath, 'w') as quadFile:
-            quadContent = self.get_buffer()
-            quadFile.write(quadContent)
+            buf = self.get_buffer()
+            quadText = buf.get_text(buf.get_start_iter(), buf.get_end_iter(), True)
+            quadFile.write(quadText)
     # end writeToFile()

@@ -73,11 +73,13 @@ class QuadWindow(Gtk.Window):
 
     # --- method to handle key presses
     def keyHandling(self, event):
+        global quad
+
         keyname = Gdk.keyval_name(event.keyval)
-        print(keyname)
-        print(event.state)
 
         # TODO: get multiple key presses to register in combination
-        if keyname == 's' and event.state == Gdk.ModifierType.CONTROL_MASK:
-            print("working")
+        if keyname == 'Return':
+            print("- saved to file")
+            for quadID in range (0, 4):
+                self.quad[quadID].writeToFile()
     # end keyHandling()
