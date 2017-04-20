@@ -26,20 +26,16 @@ class QuadWindow(Gtk.Window):
 
     # --- method for making other method calls to setup the whole GUI
     def createGUI(self):
-        global quad
+        global quad, quadScroll
 
         for quadID in range(0, 4):
             self.createQuad(self.quad, quadID)
+            self.createScrollWin(self.quad, self.quadScroll, quadID)
         return
     # end createGUI()
 
     # --- method to specifically create an instance of Quadrant on the Window
     def createQuad(self, quad, quadID):
-        global quadScroll
-
-        scrollWin = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        scrollWin.set_size_request(150, 150)
-        self.quadScroll.append(scrollWin)
 
         # create quadrants
         newQuad = Quadrant(self.quadPath, quadID)
@@ -48,15 +44,28 @@ class QuadWindow(Gtk.Window):
         quad[quadID].set_right_margin(10)
         quad[quadID].readFromFile()
 
+    # end createQuad()
+
+    # --- method to wrap the Quadrant passed as param around a scroll window.
+    # Method then adds scroll window to GUI
+    def createScrollWin(self, quad, quadScroll, quadID):
+
+        scrollWin = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        scrollWin.set_size_request(150, 150)
+        self.quadScroll.append(scrollWin)
+
         self.quadScroll[quadID].add(quad[quadID])
 
         # set quad position in grid based on ID
         if(quadID == 0):
             self.quadGrid.add(self.quadScroll[quadID])
         elif(quadID == 1):
-            self.quadGrid.attach_next_to(self.quadScroll[quadID], self.quadScroll[0], Gtk.PositionType.RIGHT, 1, 1)
+            self.quadGrid.attach_next_to(self.quadScroll[quadID],
+                    self.quadScroll[0], Gtk.PositionType.RIGHT, 1, 1)
         elif(quadID == 2):
-            self.quadGrid.attach_next_to(self.quadScroll[quadID], self.quadScroll[0], Gtk.PositionType.BOTTOM, 1, 1)
+            self.quadGrid.attach_next_to(self.quadScroll[quadID],
+                    self.quadScroll[0], Gtk.PositionType.BOTTOM, 1, 1)
         elif(quadID == 3):
-            self.quadGrid.attach_next_to(self.quadScroll[quadID], self.quadScroll[1], Gtk.PositionType.BOTTOM, 1, 1)
-    # end createQuad()
+            self.quadGrid.attach_next_to(self.quadScroll[quadID],
+                    self.quadScroll[1], Gtk.PositionType.BOTTOM, 1, 1)
+    # end createScrollWin
