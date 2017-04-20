@@ -4,6 +4,7 @@
 import gi
 import os
 from gi.repository import Gtk
+from gi.repository import Gdk
 from Quadrant import Quadrant
 from os.path import expanduser
 
@@ -69,3 +70,14 @@ class QuadWindow(Gtk.Window):
             self.quadGrid.attach_next_to(self.quadScroll[quadID],
                     self.quadScroll[1], Gtk.PositionType.BOTTOM, 1, 1)
     # end createScrollWin
+
+    # --- method to handle key presses
+    def keyHandling(self, event):
+        keyname = Gdk.keyval_name(event.keyval)
+        print(keyname)
+        print(event.state)
+
+        # TODO: get multiple key presses to register in combination
+        if keyname == 's' and event.state == Gdk.ModifierType.CONTROL_MASK:
+            print("working")
+    # end keyHandling()
