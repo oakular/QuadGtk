@@ -2,4 +2,6 @@
 doc/
 bin/
 Quadrant.pyc
-__*__
+setup.py
+WindowMain.pyc
+__*__/

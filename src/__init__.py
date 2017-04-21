@@ -6,6 +6,10 @@ from gi.repository import Gtk, Gdk
 from WindowMain import QuadWindow
 
 # setup
+quadDir = os.path.expanduser("~") + "/.quad/"
+if not(os.path.exists(quadDir)):
+     os.makedirs(quadDir)
+
 win = QuadWindow()
 win.connect("delete-event", Gtk.main_quit)
 win.connect("key-press-event", QuadWindow.keyHandling)
