@@ -95,3 +95,10 @@ class QuadWindow(Gtk.Window):
             for quadID in range (0, 4):
                 self.quad[quadID].writeToFile()
     # end keyHandling()
+
+    def main_quit(self, event):
+        for quadID in range (0, 4):
+            self.quad[quadID].writeToFile()
+
+        Gtk.main_quit(event)
+    # end main_quit()
