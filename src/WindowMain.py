@@ -3,9 +3,13 @@
 
 import gi
 import os
+import time
+
+# GTK import
 from gi.repository import Gtk
 from gi.repository import Gdk
 
+# QUAD import
 from Quadrant import Quadrant
 from os.path import expanduser
 
@@ -84,6 +88,18 @@ class QuadWindow(Gtk.Window):
                     self.quadScroll[1], Gtk.PositionType.BOTTOM, 1, 1)
     # end createScrollWin
 
+    def autoSave(self, seconds):
+        while True:
+            self.writeQuadToFile()
+            time.sleep(seconds)
+
+    # --- method to write the contents in each quadrant to its respective file
+    def writeQuadToFile(self):
+        print("- saved to file")
+        for quadID in range (0, 4):
+            self.quad[quadID].writeToFile()
+    # end writeQuadToFile()
+
     # --- method to handle key presses
     def keyHandling(self, event):
         global quad
@@ -93,7 +109,5 @@ class QuadWindow(Gtk.Window):
         # save file when ctrl+s is pressed
         if event.get_state() == Gdk.ModifierType.CONTROL_MASK:
             if keyname == 's':
-                print("- saved to file")
-                for quadID in range (0, 4):
-                    self.quad[quadID].writeToFile()
+                self.writeQuadToFile()
     # end keyHandling()
