@@ -6,7 +6,7 @@ import os
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-from Quadrant import Quadrant
+from src.Quadrant import Quadrant
 from os.path import expanduser
 
 class QuadWindow(Gtk.Window):
@@ -91,8 +91,8 @@ class QuadWindow(Gtk.Window):
         keyname = Gdk.keyval_name(event.keyval)
 
         # save file when ctrl+s is pressed
-        if event.get_state() == Gdk.ModifierType.CONTROL_MASK:
-            if keyname == 's':
+        if keyname == 's':
+            if event.get_state() == Gdk.ModifierType.CONTROL_MASK:
                 print("- saved to file")
                 for quadID in range (0, 4):
                     self.quad[quadID].writeToFile()
