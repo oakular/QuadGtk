@@ -3,7 +3,7 @@ import gi
 import os
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
-from WindowMain import QuadWindow
+from src.WindowMain import QuadWindow
 
 # setup
 quadDir = os.path.expanduser("~") + "/.quad/"
