@@ -6,7 +6,7 @@ import os
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-from src.Quadrant import Quadrant
+from Quadrant import Quadrant
 from os.path import expanduser
 
 class QuadWindow(Gtk.Window):
@@ -96,6 +96,13 @@ class QuadWindow(Gtk.Window):
                 print("- saved to file")
                 for quadID in range (0, 4):
                     self.quad[quadID].writeToFile()
+
+        # load file when ctrl+o is pressed
+        if keyname == 'o':
+            if event.get_state() == Gdk.ModifierType.CONTROL_MASK:
+                print("- read from file")
+                for quadID in range (0, 4):
+                    self.quad[quadID].readFromFile()
     # end keyHandling()
 
     def main_quit(self, event):
